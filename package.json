@@ -1,0 +1,21 @@
+{
+  "name": "fukusuke-registro-clientes",
+  "version": "1.0.0",
+  "description": "Formulario de registro de clientes para el restaurante Fukusuke con conexión a MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

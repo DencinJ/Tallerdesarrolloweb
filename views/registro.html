@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro de Cliente - Fukusuke</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/estilos.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h2>Registro de Cliente</h2>
+    <form id="form-registro">
+      <label for="nombre">Nombre completo</label>
+      <input type="text" id="nombre" name="nombre" required />
+
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="telefono">Teléfono</label>
+      <input type="tel" id="telefono" name="telefono" required />
+
+      <label for="direccion">Dirección</label>
+      <input type="text" id="direccion" name="direccion" required />
+
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" name="password" required />
+
+      <button type="submit">Registrarse</button>
+      <div style="text-align: center; margin-top: 1rem;">
+        <p>¿Ya tienes una cuenta?</p>
+        
+        <a href="/login" style="text-decoration: none;">
+          <button type="button" style="background-color: #555; color: white; padding: 0.5rem 1rem; border: none; border-radius: 8px; cursor: pointer;">
+            Iniciar sesión
+          </button>
+        </a>
+      </div>
+    </form>
+    <p id="mensaje" style="margin-top: 1rem; text-align: center;"></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('form-registro');
+    const mensaje = document.getElementById('mensaje');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const datos = {
+        nombre: form.nombre.value,
+        email: form.email.value,
+        telefono: form.telefono.value,
+        direccion: form.direccion.value,
+        password: form.password.value,
+      };
+
+      try {
+        const res = await fetch('/registrar', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(datos)
+        });
+
+        const resultado = await res.json();
+
+        if (res.ok) {
+          mensaje.textContent = '✅ Registro exitoso. ¡Bienvenido!';
+          mensaje.style.color = 'green';
+          form.reset();
+        } else {
+          mensaje.textContent = '❌ Ocurrió un problema: ' + resultado.error;
+          mensaje.style.color = 'red';
+        }
+      } catch (err) {
+        mensaje.textContent = '❌ Error de red o del servidor.';
+        mensaje.style.color = 'red';
+      }
+    });
+  </script>
+</body>
+</html>
