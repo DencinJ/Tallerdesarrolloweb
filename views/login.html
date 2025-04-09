@@ -44,18 +44,14 @@
       try {
         const res = await fetch('/login', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(datos)
         });
 
         const resultado = await res.json();
 
         if (res.ok) {
-          mensaje.textContent = '✅ Bienvenido de nuevo, ' + resultado.nombre;
-          mensaje.style.color = 'green';
-          form.reset();
+          window.location.href = "/inicio";
         } else {
           mensaje.textContent = '❌ ' + resultado.error;
           mensaje.style.color = 'red';
@@ -68,3 +64,4 @@
   </script>
 </body>
 </html>
+

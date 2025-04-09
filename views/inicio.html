@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fukusuke Sushi</title>
+  <link rel="stylesheet" href="/estilos.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #111;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #1a1a1a;
+      padding: 1rem 2rem;
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-top {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #f33;
+    }
+
+    .menu-categorias {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .menu-categorias a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    .menu-categorias a:hover {
+      color: #f33;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #f33;
+    }
+
+    .contenido {
+      text-align: center;
+      padding: 7rem 2rem 4rem;
+      flex-grow: 1;
+    }
+
+    .contenido img {
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 10px;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      color: #ccc;
+      font-size: 0.8rem;
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .footer-left {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .footer-center {
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    .footer-center a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-center a:hover {
+      color: #f33;
+    }
+
+    .footer-right img {
+      height: 40px;
+    }
+
+    /* Usuario */
+    #user-info {
+      position: relative;
+    }
+
+    #user-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #user-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background: white;
+      color: #111;
+      border-radius: 6px;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    #user-menu p, #user-menu button {
+      margin: 0.5rem 0;
+      cursor: pointer;
+    }
+
+    #user-menu button {
+      background: #f33;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="logo-top">
+        <img src="/img/logo-fukusuke.png" alt="Fukusuke Sushi">
+        <span>FUKUSUKE SUSHI</span>
+      </div>
+      <div class="menu-categorias">
+        <a href="#">Sushi</a>
+        <a href="#">Rolls</a>
+        <a href="#">Fusion</a>
+        <a href="#">No rice</a>
+        <a href="#">Nigiri</a>
+        <a href="#">Sashimi</a>
+        <a href="#">Vegetariano</a>
+        <a href="#">Handroll</a>
+        <a href="#">Salsas</a>
+        <a href="#">Agregados</a>
+      </div>
+    </div>
+    <nav>
+      <a href="#">Carta</a>
+      <a href="#">Locales</a>
+      <a href="#">Carro</a>
+      <div id="user-info" style="display: none;">
+        <button id="user-btn"></button>
+        <div id="user-menu">
+          <p>Cuenta</p>
+          <p>Datos personales</p>
+          <p>Mis pedidos</p>
+          <button onclick="cerrarSesion()">Cerrar sesión</button>
+        </div>
+      </div>
+      <a href="/login" id="login-link">Login/Registro</a>
+    </nav>
+  </header>
+
+  <div class="contenido">
+    <img src="/img/sushi-home.jpg" alt="Sushi bienvenida">
+  </div>
+
+  <footer>
+    <div class="footer-left">
+      <i class="fab fa-facebook-f"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-tiktok"></i>
+    </div>
+    <div class="footer-center">
+      <p>Horario de atención: Lunes a sábado de 09:00 a 17:00 y de 18:00 a 23:30 hrs.</p>
+      <p>
+        &copy; 2025 Fukusuke Sushi &nbsp;&nbsp; | &nbsp;&nbsp;
+        <a href="#">POLÍTICAS DE PRIVACIDAD</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+        <a href="#">Preguntas Frecuentes</a>
+      </p>
+    </div>
+    <div class="footer-right">
+      <img src="/img/sushi-san.png" alt="Fukusuke Logo">
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const loginLink = document.getElementById('login-link');
+      const userSection = document.getElementById('user-info');
+      const userBtn = document.getElementById('user-btn');
+      const userMenu = document.getElementById('user-menu');
+
+      try {
+        const res = await fetch('/usuario');
+        const data = await res.json();
+
+        if (data.nombre) {
+          loginLink.style.display = 'none';
+          userSection.style.display = 'inline-block';
+          userBtn.textContent = data.nombre;
+
+          userBtn.addEventListener('click', () => {
+            userMenu.style.display = userMenu.style.display === 'block' ? 'none' : 'block';
+          });
+        } else {
+          loginLink.style.display = 'inline-block';
+          userSection.style.display = 'none';
+        }
+      } catch (err) {
+        console.error("No se pudo obtener usuario:", err);
+      }
+    });
+
+    function cerrarSesion() {
+      fetch('/logout')
+        .then(() => window.location.href = '/login');
+    }
+  </script> 
+</body>
+</html>
+

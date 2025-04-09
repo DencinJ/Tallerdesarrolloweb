@@ -29,7 +29,6 @@
       <button type="submit">Registrarse</button>
       <div style="text-align: center; margin-top: 1rem;">
         <p>¿Ya tienes una cuenta?</p>
-        
         <a href="/login" style="text-decoration: none;">
           <button type="button" style="background-color: #555; color: white; padding: 0.5rem 1rem; border: none; border-radius: 8px; cursor: pointer;">
             Iniciar sesión
@@ -58,20 +57,16 @@
       try {
         const res = await fetch('/registrar', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(datos)
         });
 
         const resultado = await res.json();
 
         if (res.ok) {
-          mensaje.textContent = '✅ Registro exitoso. ¡Bienvenido!';
-          mensaje.style.color = 'green';
-          form.reset();
+          window.location.href = '/login'; // Redirección al login
         } else {
-          mensaje.textContent = '❌ Ocurrió un problema: ' + resultado.error;
+          mensaje.textContent = '❌ ' + resultado.error;
           mensaje.style.color = 'red';
         }
       } catch (err) {
