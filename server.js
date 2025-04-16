@@ -245,7 +245,7 @@ app.get('/logout', (req, res) => {
       console.error('❌ Error al cerrar sesión:', err);
       return res.status(500).json({ error: 'Error al cerrar sesión' });
     }
-    res.redirect('/login');
+    res.status(200).json({ mensaje: 'Sesión cerrada correctamente' });
   });
 });
 

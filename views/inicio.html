@@ -461,7 +461,9 @@
           <p>Cuenta</p>
           <p>Datos personales</p>
           <p>Mis pedidos</p>
-          <button onclick="cerrarSesion()">Cerrar sesión</button>
+          <button id="cerrar-btn">
+            <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+          </button>
         </div>
       </div>
       <a href="/login" id="login-link">Login/Registro</a>
@@ -500,7 +502,6 @@
     </div>
   </footer>
 
-  <!-- Social Card -->
   <div class="social-card">
     <h4>¡Síguenos!</h4>
     <div class="social-icons">
@@ -516,11 +517,11 @@
       const userSection = document.getElementById('user-info');
       const userBtn = document.getElementById('user-btn');
       const userMenu = document.getElementById('user-menu');
+      const cerrarBtn = document.getElementById('cerrar-btn');
       const promoBanner = document.getElementById('promo-banner');
       const closePromoBtn = document.getElementById('close-promo');
 
-      // Evento para cerrar el banner
-      closePromoBtn.addEventListener('click', () => {
+      closePromoBtn?.addEventListener('click', () => {
         promoBanner.style.display = 'none';
       });
 
@@ -536,13 +537,27 @@
           userBtn.addEventListener('click', () => {
             userMenu.style.display = userMenu.style.display === 'block' ? 'none' : 'block';
           });
-          
-          // Cerrar el menú al hacer clic fuera de él
+
           document.addEventListener('click', (e) => {
             if (!userSection.contains(e.target)) {
               userMenu.style.display = 'none';
             }
           });
+
+          cerrarBtn?.addEventListener('click', async () => {
+            try {
+              const logoutRes = await fetch('/logout');
+              if (logoutRes.ok) {
+                window.location.href = '/login';
+              } else {
+                alert('No se pudo cerrar sesión.');
+              }
+            } catch (err) {
+              console.error('Error al cerrar sesión:', err);
+              alert('Hubo un error al cerrar sesión.');
+            }
+          });
+
         } else {
           loginLink.style.display = 'inline-block';
           userSection.style.display = 'none';
@@ -551,11 +566,6 @@
         console.error("No se pudo obtener usuario:", err);
       }
     });
-
-    function cerrarSesion() {
-      fetch('/logout')
-        .then(() => window.location.href = '/login');
-    }
   </script>
 </body>
 </html>
